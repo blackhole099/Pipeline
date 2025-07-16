@@ -44,6 +44,6 @@ stages:
     steps:
     - task: AzureWebAppContainer@1
       inputs:
-        azureSubscription: 'AzureRM-ServiceConnection' # Azure RM connection
+        azureSubscription: 'AzureRM-ServiceConnection' 
         appName: $(webAppName)
         containers: '$(containerRegistry)/$(imageName):latest'
