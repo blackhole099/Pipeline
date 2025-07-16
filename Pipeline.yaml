@@ -1,7 +1,5 @@
 trigger:
-  schedules:
-    - cron: "0 2 * * *"
-      displayName: 'Ejecucion diaria a las 2:00 AM'
+ 
       branches:
         include:
           - main
