@@ -1,0 +1,51 @@
+trigger:
+  schedules:
+    - cron: "0 2 * * *"
+      displayName: 'Ejecucion diaria a las 2:00 AM'
+      branches:
+        include:
+          - main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  imageName: 'historificacion-ecoembes'
+  containerRegistry: 'historificacionecoembes20250627.azurecr.io'
+  webAppName: 'historificacionecoembes'
+
+stages:
+- stage: BuildAndPush
+  jobs:
+  - job: Build
+    steps:
+    - task: UseDotNet@2
+      inputs:
+        packageType: sdk
+        version: '8.0'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: publish
+        projects: '**/*.csproj'
+        arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory)'
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'ACR-ServiceConnection' # Docker Registry connection
+        repository: $(imageName)
+        Dockerfile: '**/Dockerfile'
+        command: buildAndPush
+        tags: |
+          latest
+
+- stage: Deploy
+  dependsOn: BuildAndPush
+  jobs:
+  - job: Deploy
+    steps:
+    - task: AzureWebAppContainer@1
+      inputs:
+        azureSubscription: 'AzureRM-ServiceConnection' # Azure RM connection
+        appName: $(webAppName)
+        containers: '$(containerRegistry)/$(imageName):latest'
