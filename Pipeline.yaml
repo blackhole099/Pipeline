@@ -30,6 +30,6 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'cc47030a-a63c-48de-bf29-99c38266b47a' 
+    azureSubscription: '/subscriptions/cc47030a-a63c-48de-bf29-99c38266b47a/resourceGroups/PruebaEcoembes/providers/Microsoft.Web/connections/arm' 
     appName: '$(webAppName)'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
