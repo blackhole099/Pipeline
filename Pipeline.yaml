@@ -30,6 +30,6 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: '3048dc87-43f0-4100-9acb-ae1971c7' 
+    azureSubscription: 'cc47030a-a63c-48de-bf29-99c38266b47a' 
     appName: '$(webAppName)'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
