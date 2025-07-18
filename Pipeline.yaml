@@ -30,6 +30,6 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'BlobEndpoint=https://historificacionecoembes.blob.core.windows.net/;QueueEndpoint=https://historificacionecoembes.queue.core.windows.net/;FileEndpoint=https://historificacionecoembes.file.core.windows.net/;TableEndpoint=https://historificacionecoembes.table.core.windows.net/;SharedAccessSignature=sv=2024-11-04&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2025-07-17T19:40:41Z&st=2025-07-17T11:25:41Z&spr=https&sig=2zNIWsm2F%2ByHHZrWT8xjuC5eH7Mo%2FP4DkFLj0M0JZQY%3D' 
+    azureSubscription: '3048dc87-43f0-4100-9acb-ae1971c79395' 
     appName: '$(webAppName)'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
